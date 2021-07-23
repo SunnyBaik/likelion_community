@@ -69,3 +69,18 @@
     justify-content: center; 
 
 }
+.homeposttitle {
+    width: 100%;
+    font-family: 'Do Hyeon', sans-serif;
+    text-decoration-line: none;
+    display:flex;
+    justify-content: center;
+    
+}
+.homepostcontent {
+    display:flex;
+    border:top;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-decoration-line: none;
+}
+

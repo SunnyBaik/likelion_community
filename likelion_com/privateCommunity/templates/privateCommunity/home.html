@@ -2,8 +2,6 @@
 {% load static %}
 {% block content %}
 
-
-
   <main class="container">
   <div style="margin-top: 120px;">
       <a class="mouse-scroll" style="position:relative;" href="#wow"> 
@@ -20,97 +18,98 @@
 
   </div>
 
-
   <div class="row g-5">
     <div class="col-md-8">
-      <div class="row p-3">
-        <div class="col-md-6 d-flex flex-column border border-info rounded">
-          <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
-          
-          <h5 class= "border-bottom" style="width: 100%; font-family: 'Noto Sans KR', sans-serif;">
-            <a href="{% url 'privateCommunity:board_notice' %}">공지게시판</a>
-          </h5>
-          {% for post in notice %}
-            <a class="d-flex border-top" href="/community/posts/{{ post.id }}/">
-                <span class="d-flex justify-content-center" style="width: 70%;">{{ post.title }}</span>
-                <span style="width: 20%;">{{ post.author }}</span>
-                <span style="width: 10%;">{{ post.view_count }}</span>
-            </a>
-          {% endfor %}
+      <span class="row p-3">
+        <div class="card" style="width: 21rem;">
+          <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
+            &nbsp; 공지게시판
           </div>
+          {% for post in notice %}
+            <a class="homepostcontent" href="/community/posts/{{ post.id }}/" >
+                <span class="d-flex justify-content-start" style="width: 70%; margin:1%; margin-left:6%;">{{ post.title }}</span>
+                <span style="width: 10%; margin:1%; margin-left:4%;">{{ post.view_count }}</span>
+            </a>
+          {% endfor %}
         </div>
-        <div class="col-md-6 d-flex flex-column border border-info rounded">
-          <h5 class= "border-bottom" style="width: 100%;">
-            <a href="{% url 'privateCommunity:board_announce' %}">공고게시판</a>
-          </h5>
+        
+        <div class="card" style="width: 21rem; margin-left:4.5%">
+          <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
+            &nbsp; 공고게시판
+          </div>
           {% for post in announce %}
-            <a class="d-flex border-top" href="/community/posts/{{ post.id }}/">
-                <span class="d-flex justify-content-center" style="width: 70%;">{{ post.title }}</span>
+              <a class="homepostcontent" href="/community/posts/{{ post.id }}/" >
+                <span class="d-flexjustify-content-start" style="width: 70%; margin:1%; margin-left:6%;">{{ post.title }}</span>
                 <span style="width: 20%;">{{ post.author }}</span>
                 <span style="width: 10%;">{{ post.view_count }}</span>
-            </a>
+              </a>
           {% endfor %}
         </div>
-      </div>
+      </span>
+
       <div class="row p-3">
-        <div class="col-md-6 d-flex flex-column border border-info rounded">
-          <h5 class= "border-bottom" style="width: 100%;">
-            <a href="{% url 'privateCommunity:board_qna' %}">질의응답게시판</a>
-          </h5>
+        <div class="card" style="width: 21rem;">
+          <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
+            &nbsp; 질의응답게시판
+          </div>
           {% for post in qna %}
-            <a class="d-flex border-top" href="/community/posts/{{ post.id }}/">
-                <span class="d-flex justify-content-center" style="width: 70%;">{{ post.title }}</span>
+            <a class="homepostcontent" href="/community/posts/{{ post.id }}/" >
+                <span class="d-flexjustify-content-start" style="width: 70%; margin:1%; margin-left:6%;">{{ post.title }}</span>
                 <span style="width: 20%;">{{ post.author }}</span>
                 <span style="width: 10%;">{{ post.view_count }}</span>
             </a>
           {% endfor %}
         </div>
-        <div class="col-md-6 d-flex flex-column border border-info rounded">
-          <h5 class= "border-bottom" style="width: 100%;">
-            <a href="{% url 'privateCommunity:board_apply' %}">모집게시판</a>
-          </h5>
+        
+        <div class="card" style="width: 21rem; margin-left:4.5%">
+          <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px; ">
+            &nbsp; 모집게시판
+          </div>
           {% for post in apply %}
-            <a class="d-flex border-top" href="/community/posts/{{ post.id }}/">
-                <span class="d-flex justify-content-center" style="width: 70%;">{{ post.title }}</span>
+              <a class="homepostcontent" href="/community/posts/{{ post.id }}/" >
+                <span class="d-flexjustify-content-start" style="width: 70%; margin:1%; margin-left:6%;">{{ post.title }}</span>
                 <span style="width: 20%;">{{ post.author }}</span>
                 <span style="width: 10%;">{{ post.view_count }}</span>
-            </a>
+              </a>
           {% endfor %}
         </div>
       </div>
+
       <div class="row p-3">
-        <div class="col-md-6 d-flex flex-column border border-info rounded">
-          <h5 class= "border-bottom" style="width: 100%;">
-            <a href="{% url 'privateCommunity:board_free' %}">자유게시판</a>
-          </h5>
+        <div class="card" style="width: 21rem; ">
+          <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
+            &nbsp; 자유게시판
+          </div>
           {% for post in free %}
-            <a class="d-flex border-top" href="/community/posts/{{ post.id }}/">
-                <span class="d-flex justify-content-center" style="width: 70%;">{{ post.title }}</span>
+            <a class="homepostcontent" href="/community/posts/{{ post.id }}/" >
+                <span class="d-flexjustify-content-start" style="width: 70%; margin:1%; margin-left:6%;">{{ post.title }}</span>
                 <span style="width: 20%;">{{ post.author }}</span>
                 <span style="width: 10%;">{{ post.view_count }}</span>
             </a>
           {% endfor %}
         </div>
-        <div class="col-md-6 d-flex flex-column border border-info rounded">
-          <h5 class= "border-bottom" style="width: 100%;">
-            <a href="{% url 'privateCommunity:board_info' %}">정보게시판</a>
-          </h5>
+        
+        <div class="card" style="width: 21rem;margin-left:4.5%">
+          <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
+            &nbsp; 정보게시판
+          </div>
           {% for post in info %}
-            <a class="d-flex border-top" href="/community/posts/{{ post.id }}/">
-                <span class="d-flex justify-content-center" style="width: 70%;">{{ post.title }}</span>
+              <a class="homepostcontent" href="/community/posts/{{ post.id }}/" >
+                <span class="d-flexjustify-content-start" style="width: 70%; margin:1%; margin-left:6%;">{{ post.title }}</span>
                 <span style="width: 20%;">{{ post.author }}</span>
                 <span style="width: 10%;">{{ post.view_count }}</span>
-            </a>
+              </a>
           {% endfor %}
         </div>
       </div>
 
-      <nav class="blog-pagination" aria-label="Pagination">
-        <a class="btn btn-outline-secondary" href="#">Top</a>
-      </nav>
-
+        <br>
+        <br>
+          <nav class="blog-pagination" aria-label="Pagination">
+            <a class="btn btn-outline-secondary" href="#" style="margin-left:2%">Top</a>
+          </nav>
     </div>
-
+    
     <div class="col-md-4">
       <div class="position-sticky" style="top: 6rem;">
         <div class="p-4">
