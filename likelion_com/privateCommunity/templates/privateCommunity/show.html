@@ -89,87 +89,109 @@
           <div><p>{{ comment.author }}: {{ comment.content }} &nbsp; &nbsp;{{ comment.created_at }} &nbsp; </p></div>
         
           {% if user.is_authenticated %}
-          <button class="make-recomment-button" onclick="makeRecommentBox({{post.id}}, {{comment.id}})">
-            대댓글 달기
-          </button>
-          <button class="like-box-parent">
-            좋아요
-            <div class="like-box-child">
-              <div class="emotion-best">
-                <a onclick="onClickCommentBestButton({{post.id}}, {{comment.id}})" id="{{comment.id}}-comment-best-button">
-                  <img class="emotion" src="/static/privateCommunity/img/best.png" />
-                </a>
+            <button class="make-recomment-button" onclick="makeRecommentBox({{post.id}}, {{comment.id}})">
+              답글 달기
+            </button>
+            <button class="like-box-parent">
+              좋아요
+              <div class="like-box-child">
+                <div class="emotion-best">
+                  <a onclick="onClickCommentBestButton({{post.id}}, {{comment.id}})" id="{{comment.id}}-comment-best-button">
+                    <img class="emotion" src="/static/privateCommunity/img/best.png" />
+                  </a>
+                </div>
+                <div class="emotion-thanks">
+                  <a onclick="onClickCommentThanksButton({{post.id}}, {{comment.id}})" id="{{comment.id}}-comment-thanks-button">
+                    <img class="emotion" src="/static/privateCommunity/img/thanks.png" />
+                  </a>
+                </div>
+                <div class="emotion-surprising">
+                  <a onclick="onClickCommentSurprisingButton({{post.id}}, {{comment.id}})" id="{{comment.id}}-comment-surprising-button">
+                    <img class="emotion" src="/static/privateCommunity/img/surprising.png" />
+                  </a>
+                </div>
+                <div class="emotion-funny">
+                  <a onclick="onClickCommentFunnyButton({{post.id}}, {{comment.id}})" id="{{comment.id}}-comment-funny-button">
+                    <img class="emotion" src="/static/privateCommunity/img/funny.png" />
+                  </a>
+                </div>
               </div>
-              <div class="emotion-thanks">
-                <a onclick="onClickCommentThanksButton({{post.id}}, {{comment.id}})" id="{{comment.id}}-comment-thanks-button">
-                  <img class="emotion" src="/static/privateCommunity/img/thanks.png" />
-                </a>
-              </div>
-              <div class="emotion-surprising">
-                <a onclick="onClickCommentSurprisingButton({{post.id}}, {{comment.id}})" id="{{comment.id}}-comment-surprising-button">
-                  <img class="emotion" src="/static/privateCommunity/img/surprising.png" />
-                </a>
-              </div>
-              <div class="emotion-funny">
-                <a onclick="onClickCommentFunnyButton({{post.id}}, {{comment.id}})" id="{{comment.id}}-comment-funny-button">
-                  <img class="emotion" src="/static/privateCommunity/img/funny.png" />
-                </a>
-              </div>
+            </button>
+            {% if comment.best_count > 0 %}
+            <div class="emotion-icon" id="{{comment.id}}-best-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
             </div>
-          </button>
-          {% if comment.best_count > 0 %}
-          <div class="emotion-icon">
-            <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
-          </div>
-          {% endif %}
-          {% if comment.thanks_count > 0 %}
-          <div class="emotion-icon">
-            <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
-          </div>
-          {% endif %}
-          {% if comment.surprising_count > 0 %}
-          <div class="emotion-icon">
-            <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
-          </div>
-          {% endif %}
-          {% if comment.funny_count > 0 %}
-          <div class="emotion-icon">
-            <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
-          </div>
-          {% endif %}
-          {% if comment.emotion_count > 0%}
-            <p class='comment-emotion-count'>{{comment.emotion_count}}</p>
-          {% endif %}
-          {% if request.user == comment.author %}   
-          <div>
-            <a onclick = "onClickCommentDelete({{post.id}},{{comment.id}})">&nbsp;&nbsp;삭제</a>
-          </div>
-          {% endif %}
+            {% else %}
+            <div class="emotion-icon none" id="{{comment.id}}-best-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
+            </div>
+            {% endif %}
+            {% if comment.thanks_count > 0 %}
+            <div class="emotion-icon" id="{{comment.id}}-thanks-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
+            </div>
+            {% else %}
+            <div class="emotion-icon none" id="{{comment.id}}-thanks-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
+            </div>
+            {% endif %}
+            {% if comment.surprising_count > 0 %}
+            <div class="emotion-icon" id="{{comment.id}}-surprising-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
+            </div>
+            {% else %}
+            <div class="emotion-icon none" id="{{comment.id}}-surprising-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
+            </div>
+            {% endif %}
+            {% if comment.funny_count > 0 %}
+            <div class="emotion-icon"id="{{comment.id}}-funny-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
+            </div>
+            {% else %}
+            <div class="emotion-icon none"id="{{comment.id}}-funny-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
+            </div>
+            {% endif %}
+            {% if comment.emotion_count > 0%}
+            <p class='comment-emotion-count' id="{{comment.id}}-emotion-count">
+              {{comment.emotion_count}}
+            </p>
+            {% else %}
+            <p class='comment-emotion-count none' id="{{comment.id}}-emotion-count">
+              {{comment.emotion_count}}
+            </p>
+            {% endif %}
+            {% if request.user == comment.author %}   
+            <div>
+              <a onclick = "onClickCommentDelete({{post.id}},{{comment.id}})">&nbsp;&nbsp;삭제</a>
+            </div>
+            {% endif %}
 
           {% else %}
-          {% if comment.best_count > 0 %}
-          <div class="emotion-icon">
-            <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
-          </div>
-          {% endif %}
-          {% if comment.thanks_count > 0 %}
-          <div class="emotion-icon">
-            <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
-          </div>
-          {% endif %}
-          {% if comment.surprising_count > 0 %}
-          <div class="emotion-icon">
-            <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
-          </div>
-          {% endif %}
-          {% if comment.funny_count > 0 %}
-          <div class="emotion-icon">
-            <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
-          </div>
-          {% endif %}
-          {% if comment.emotion_count > 0%}
-            <p class='comment-emotion-count'>{{comment.emotion_count}}</p>
-          {% endif %}
+            {% if comment.best_count > 0 %}
+            <div class="emotion-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
+            </div>
+            {% endif %}
+            {% if comment.thanks_count > 0 %}
+            <div class="emotion-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
+            </div>
+            {% endif %}
+            {% if comment.surprising_count > 0 %}
+            <div class="emotion-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
+            </div>
+            {% endif %}
+            {% if comment.funny_count > 0 %}
+            <div class="emotion-icon">
+              <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
+            </div>
+            {% endif %}
+            {% if comment.emotion_count > 0%}
+              <p class='comment-emotion-count'>{{comment.emotion_count}}</p>
+            {% endif %}
           {% endif %}
         </div>
           
@@ -179,83 +201,106 @@
           <div class = 'recomment-box' id='{{recomment.id}}-recomment'>
             <div><p> &nbsp; &nbsp;&nbsp; &nbsp; ㄴ> {{ recomment.author }}: {{ recomment.content }} &nbsp; &nbsp;{{ recomment.created_at }} &nbsp; </p></div>
             {% if user.is_authenticated %}
-            <button class="like-box-parent">
-              좋아요
-              <div class="like-box-child">
-                <div class="emotion-best">
-                  <a onclick="onClickReCommentBestButton({{post.id}}, {{comment.id}}, {{recomment.id}})" id="{{recomment.id}}-recomment-best-button">
-                    <img class="emotion" src="/static/privateCommunity/img/best.png" />
-                  </a>
+              <button class="like-box-parent">
+                좋아요
+                <div class="like-box-child">
+                  <div class="emotion-best">
+                    <a onclick="onClickReCommentBestButton({{post.id}}, {{comment.id}}, {{recomment.id}})" id="{{recomment.id}}-recomment-best-button">
+                      <img class="emotion" src="/static/privateCommunity/img/best.png" />
+                    </a>
+                  </div>
+                  <div class="emotion-thanks">
+                    <a onclick="onClickReCommentThanksButton({{post.id}}, {{comment.id}}, {{recomment.id}})" id="{{recomment.id}}-recomment-thanks-button">
+                      <img class="emotion" src="/static/privateCommunity/img/thanks.png" />
+                    </a>
+                  </div>
+                  <div class="emotion-surprising">
+                    <a onclick="onClickReCommentSurprisingButton({{post.id}}, {{comment.id}}, {{recomment.id}})" id="{{recomment.id}}-recomment-surprising-button">
+                      <img class="emotion" src="/static/privateCommunity/img/surprising.png" />
+                    </a>
+                  </div>
+                  <div class="emotion-funny">
+                    <a onclick="onClickReCommentFunnyButton({{post.id}}, {{comment.id}}, {{recomment.id}})" id="{{recomment.id}}-recomment-funny-button">
+                      <img class="emotion" src="/static/privateCommunity/img/funny.png" />
+                    </a>
+                  </div>
                 </div>
-                <div class="emotion-thanks">
-                  <a onclick="onClickReCommentThanksButton({{post.id}}, {{comment.id}}, {{recomment.id}})" id="{{recomment.id}}-recomment-thanks-button">
-                    <img class="emotion" src="/static/privateCommunity/img/thanks.png" />
-                  </a>
-                </div>
-                <div class="emotion-surprising">
-                  <a onclick="onClickReCommentSurprisingButton({{post.id}}, {{comment.id}}, {{recomment.id}})" id="{{recomment.id}}-recomment-surprising-button">
-                    <img class="emotion" src="/static/privateCommunity/img/surprising.png" />
-                  </a>
-                </div>
-                <div class="emotion-funny">
-                  <a onclick="onClickReCommentFunnyButton({{post.id}}, {{comment.id}}, {{recomment.id}})" id="{{recomment.id}}-recomment-funny-button">
-                    <img class="emotion" src="/static/privateCommunity/img/funny.png" />
-                  </a>
-                </div>
+              </button>
+              
+              {% if recomment.best_count > 0 %}
+              <div class="emotion-icon" id="{{recomment.id}}-recomment-best-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
               </div>
-            </button>
-            {% if recomment.best_count > 0 %}
-            <div class="emotion-icon">
-              <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
-            </div>
-            {% endif %}
-            {% if recomment.thanks_count > 0 %}
-            <div class="emotion-icon">
-              <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
-            </div>
-            {% endif %}
-            {% if recomment.surprising_count > 0 %}
-            <div class="emotion-icon">
-              <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
-            </div>
-            {% endif %}
-            {% if recomment.funny_count > 0 %}
-            <div class="emotion-icon">
-              <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
-            </div>
-            {% endif %}
-            {% if recomment.emotion_count > 0%}
-              <p class='recomment-emotion-count'>{{recomment.emotion_count}}</p>
-            {% endif %}
-            {% if request.user == recomment.author %}   
-            <div>
-              <a onclick = "onClickReCommentDelete({{post.id}},{{comment.id}},{{recomment.id}})">&nbsp;&nbsp;삭제</a>
-            </div>
-            {% endif %}
+              {% else %}
+              <div class="emotion-icon none" id="{{recomment.id}}-recomment-best-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
+              </div>
+              {% endif %}
+              {% if recomment.thanks_count > 0 %}
+              <div class="emotion-icon" id="{{recomment.id}}-recomment-thanks-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
+              </div>
+              {% else %}
+              <div class="emotion-icon none" id="{{recomment.id}}-recomment-thanks-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
+              </div>
+              {% endif %}
+              {% if recomment.surprising_count > 0 %}
+              <div class="emotion-icon" id="{{recomment.id}}-recomment-surprising-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
+              </div>
+              {% else %}
+              <div class="emotion-icon none" id="{{recomment.id}}-recomment-surprising-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
+              </div>
+              {% endif %}
+              {% if recomment.funny_count > 0 %}
+              <div class="emotion-icon" id="{{recomment.id}}-recomment-funny-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
+              </div>
+              {% else %}
+              <div class="emotion-icon none" id="{{recomment.id}}-recomment-funny-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
+              </div>
+              {% endif %}
+              {% if recomment.emotion_count > 0%}
+              <p class='recomment-emotion-count' id="{{recomment.id}}-recomment-emotion-count">
+                {{recomment.emotion_count}}
+              </p>
+              {% else %}
+              <p class='recomment-emotion-count none' id="{{recomment.id}}-recomment-emotion-count">
+                {{recomment.emotion_count}}
+              </p>
+              {% endif %}
+              {% if request.user == recomment.author %}   
+              <div>
+                <a onclick = "onClickReCommentDelete({{post.id}},{{comment.id}},{{recomment.id}})">&nbsp;&nbsp;삭제</a>
+              </div>
+              {% endif %}
             {% else %}
-            {% if recomment.best_count > 0 %}
-            <div class="emotion-icon">
-              <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
-            </div>
-            {% endif %}
-            {% if recomment.thanks_count > 0 %}
-            <div class="emotion-icon">
-              <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
-            </div>
-            {% endif %}
-            {% if recomment.surprising_count > 0 %}
-            <div class="emotion-icon">
-              <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
-            </div>
-            {% endif %}
-            {% if recomment.funny_count > 0 %}
-            <div class="emotion-icon">
-              <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
-            </div>
-            {% endif %}
-            {% if recomment.emotion_count > 0%}
-              <p class='recomment-emotion-count'>{{recomment.emotion_count}}</p>
-            {% endif %}
+              {% if recomment.best_count > 0 %}
+              <div class="emotion-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
+              </div>
+              {% endif %}
+              {% if recomment.thanks_count > 0 %}
+              <div class="emotion-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
+              </div>
+              {% endif %}
+              {% if recomment.surprising_count > 0 %}
+              <div class="emotion-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
+              </div>
+              {% endif %}
+              {% if recomment.funny_count > 0 %}
+              <div class="emotion-icon">
+                <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
+              </div>
+              {% endif %}
+              {% if recomment.emotion_count > 0%}
+                <p class='recomment-emotion-count'>{{recomment.emotion_count}}</p>
+              {% endif %}
             {% endif %}
           </div>
           {% endfor %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Comment, Emotion, CommentEmotion, ReComment, ReCommentEmotion
+from .models import Post, Comment, Emotion, CommentEmotion, ReComment, ReCommentEmotion, Notification
 from accounts.models import Profile
 from django.db.models import Count
 from django.contrib.auth.models import User
@@ -28,8 +28,11 @@ def home(request):
         free = Post.objects.filter(category='자유게시판').order_by('-created_at')[0:5] 
         info = Post.objects.filter(category='정보게시판').order_by('-created_at')[0:5]
         popular = Post.objects.order_by('-view_count')[0:5]
-
-        return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info, 'popular':popular})
+        posts = Post.objects.all()
+        if request.user.is_anonymous:
+            return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info, 'popular':popular})
+        else:
+            return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info, 'popular':popular, 'notis': request.user.notification_set.all()})
 
 def noticecreate(request):
     if request.method == 'POST':
@@ -232,7 +235,8 @@ class CommentView:
             'commentId': comment.id,
             'author': comment.author.username,
             'created_at': comment.created_at.strftime("%Y년 %m월 %d일 %-H:%M".encode('unicode-escape').decode()).encode().decode('unicode-escape'),
-            'commentCount': comment_count
+            'commentCount': comment_count,
+            'emotionCount': comment.commentemotion_set.count()
         })
         
     def delete(request, id, cid):
@@ -518,15 +522,17 @@ class CommentEmotionView:
             comment_emotion_list.delete()
         else:
             CommentEmotion.objects.create(user=request.user, comment=comment, type=type)
-        thanks_list = comment.commentemotion_set.filter(type="thanks")
-        best_list = comment.commentemotion_set.filter(type="best")
-        surprising_list = comment.commentemotion_set.filter(type="surprising")
-        funny_list = comment.commentemotion_set.filter(type="funny")
+        thanks_count = comment.commentemotion_set.filter(type="thanks").count()
+        best_count = comment.commentemotion_set.filter(type="best").count()
+        surprising_count = comment.commentemotion_set.filter(type="surprising").count()
+        funny_count = comment.commentemotion_set.filter(type="funny").count()
+        emotion_count = thanks_count+best_count+surprising_count+funny_count
         return JsonResponse({
-            'thanksCount': thanks_list.count(),
-            'bestCount': best_list.count(),
-            'surprisingCount': surprising_list.count(),
-            'funnyCount': funny_list.count(),
+            'thanksCount': thanks_count,
+            'bestCount': best_count,
+            'surprisingCount': surprising_count,
+            'funnyCount': funny_count,
+            'emotionCount' : emotion_count
         })
 
 class RecommentEmotionView:
@@ -537,17 +543,35 @@ class RecommentEmotionView:
             recomment_emotion_list.delete()
         else:
             ReCommentEmotion.objects.create(user=request.user, recomment=recomment, type=type)
-        thanks_list = recomment.recommentemotion_set.filter(type="thanks")
-        best_list = recomment.recommentemotion_set.filter(type="best")
-        surprising_list = recomment.recommentemotion_set.filter(type="surprising")
-        funny_list = recomment.recommentemotion_set.filter(type="funny")
+        thanks_count = recomment.recommentemotion_set.filter(type="thanks").count()
+        best_count = recomment.recommentemotion_set.filter(type="best").count()
+        surprising_count = recomment.recommentemotion_set.filter(type="surprising").count()
+        funny_count = recomment.recommentemotion_set.filter(type="funny").count()
+        emotion_count = thanks_count+best_count+surprising_count+funny_count
         return JsonResponse({
-            'thanksCount': thanks_list.count(),
-            'bestCount': best_list.count(),
-            'surprisingCount': surprising_list.count(),
-            'funnyCount': funny_list.count(),
+            'thanksCount': thanks_count,
+            'bestCount': best_count,
+            'surprisingCount': surprising_count,
+            'funnyCount': funny_count,
+            'emotionCount' : emotion_count
         })
 
 
-
-
+class NotificationView:
+    def create_comment_notification(request, id, type):
+        post = Post.objects.get(id=id)
+        recipient = post.author
+        trigger_user = request.user.username
+        Notification.objects.create(recipient=recipient, trigger_user=trigger_user, post_id=id, type=type, unread=True)
+        return JsonResponse({
+            "nothing": trigger_user
+        })
+        
+    def create_recomment_notification(request, cid, type):
+        comment = Comment.objects.get(id=cid)
+        recipient = comment.author
+        trigger_user = request.user.username
+        Notification.objects.create(recipient=recipient, trigger_user=trigger_user, post_id=comment.post.id, type=type, unread=True)
+        return JsonResponse({
+            "nothing": trigger_user
+        })

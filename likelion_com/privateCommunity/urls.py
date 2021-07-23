@@ -35,6 +35,8 @@ urlpatterns = [
     path('posts/<int:id>/emotion/<str:type>/', views.EmotionView.create, name='postEmotion'),
     path('posts/<int:id>/comments/<int:cid>/commentEmotion/<str:type>/', views.CommentEmotionView.create, name='commentEmotion'),
     path('posts/<int:id>/comments/<int:cid>/recomments/<int:rcid>/recommentEmotion/<str:type>/', views.RecommentEmotionView.create, name='recommentEmotion'),
+    path('posts/<int:id>/notification/<str:type>/', views.NotificationView.create_comment_notification, name='comment_notification_create'),
+    path('comments/<int:cid>/notification/<str:type>/', views.NotificationView.create_recomment_notification, name='recomment_notification_create'),
 ]
 
 

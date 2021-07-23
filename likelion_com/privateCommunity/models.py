@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import BooleanField
 from django.utils import timezone
 from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -60,3 +61,12 @@ class ReCommentEmotion(models.Model):
     recomment = models.ForeignKey(ReComment, on_delete=models.CASCADE)
     type = models.CharField(max_length= 20)
     created_at = models.DateTimeField(default=timezone.now)
+
+class Notification(models.Model):
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE)
+    trigger_user = models.CharField(max_length=30)
+    type = models.CharField(max_length=10)
+    post_id = models.IntegerField(blank=True, null=True)
+    unread = BooleanField(default=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    
