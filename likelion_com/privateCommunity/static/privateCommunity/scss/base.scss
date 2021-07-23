@@ -1,15 +1,10 @@
-a {
-	text-decoration: blue;
-	cursor : pointer;
-}
-
 footer {
 	.copyright-container {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		padding: 20px;
-		background-color: rgb(253, 216, 245);
+		background-color: rgb(75, 93, 173);
 
 		.logo {
 			width: 30px;
@@ -21,8 +16,28 @@ footer {
 			font-size: 16px;
 			font-weight: bold;
 		}
+
+
 	}
 }
+
+.home-header{
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    position: fixed;
+    z-index: 100 !important;
+}
+
+a { color: black; text-decoration: none; cursor : pointer; }
+
+@media (hover: hover) {
+  a:hover { color:black; text-decoration: none; }
+}
+
+$offcanvas-horizontal-width: 100px;
+
+
 
 .none {
 	display: none;
@@ -92,10 +107,11 @@ footer {
 	left: -50px;
 	opacity: 0;
 	padding-top: 3px;
-	display: flex;
+	display:flex;
 	align-items: center;
 	justify-content: center;
 	z-index: -1;
+
 }
 
 .like-box-parent:hover > .like-box-child {

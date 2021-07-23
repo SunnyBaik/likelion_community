@@ -1,63 +1,54 @@
-
+{% extends 'base.html' %}
 {% load mathfilters %}
 
-{% block csslink %}
-<link href="/static/guestbook/css/guestbook.scss" rel="stylesheet" type="text/css">
-{% endblock%}
+{% load static %}
+{% load sass_tags %}
 
-{% block content %}
+{% block visit %}
+<br>
+<body style="margin-top: 100px;">
 <div id="guestbook">
-	<form action="{% url 'guestbook:write' %}" method="post">
-		{% csrf_token %}
-		<table>
-			<tr>
-				<td colspan=4><textarea name="content" id="content"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
-			</tr>
-		</table>
-	</form>
-	<ul>
-		
-			{% for guestbook in guestbooklist %}
-			{% if forloop.first %}
-				<table style='border-collapse:collapse; border:10px solid; border-color: pink;'>
-					<tr>
-						<td>[{{ forloop.revcounter }}]</td>
-						<td>{{ guestbook.author }}</td>
-						<td>{{ guestbook.created_at|date:'Y-m-d H:i' }}</td>
-                        {% if request.user == guestbook.author %}
-                            <td><a href="{% url 'guestbook:delete' guestbook.id %}">삭제</a></td>
-                        {% endif %} 
-					</tr>
-					<tr>
-						<td colspan=4>
-						{{ guestbook.content|linebreaks }}
-						</td>
-					</tr>
-				</table>
-			{% else %}
-				<table>
-					<tr>
-						<td>[{{ guestbooklist|length | sub:forloop.counter | add:1  }}]</td>
-						<td>{{ guestbook.author }}</td>
-						<td>{{ guestbook.created_at|date:'Y-m-d H:i' }}</td>
-                        {% if request.user == guestbook.author %}
-						    <td><a href="{% url 'guestbook:delete' guestbook.id %}">삭제</a></td>
-                        {% endif %}
-					</tr>
-					<tr>
-						<td colspan=4>
-						{{ guestbook.contents|linebreaks }}
-						</td>
-					</tr>
-				</table>
-			{% endif %}
+	<div style="display: flex; justify-content:center;">
+        <form class="row g-3" action="{% url 'guestbook:write' %}" method="post" style="height: 100px; width: 520px;">
+        {% csrf_token %}
+        <h5 class="col-md-6" style="font-family: 'Gamja Flower'">
+            <label for="inputguestbook" class="form-label" >  ✿ 방명록 남기기 ✿ </label>
+			<div style="display: inline-flex; align-items:center; ">
+            <input type="text" class="form-control" name="content" id="content" placeholder=" 소중한 흔적을 남겨주세용 ꈍ◡ꈍ " style="width:450px;  font-size : smaller">
+			<button type="submit" class="btn btn-outline-primary" style="width:55px; font-size : smaller;" > 확인 </button>
+			</div>
+		</h5>
+        </form>
+    </div>
+	<ul style='display: flex; flex-wrap: wrap; justify-content:center; padding: 30px;'>	
+	{% for guestbook in guestbooklist %}
+	
+		<div class="card text-dark bg-light mb-3" style= "font-family: 'Noto Sans KR', sans-serif; width:28%; padding:5px;">
+			<div class="card-header"> 
+				<nav style="font-size: 18px;">
+				{{ guestbook.author }}님
+				</nav>
+				<nav style="font-size: 12px; display: flex; align-itmes: flex-end;">
+				{{ guestbook.created_at|date:'Y-m-d H:i' }}
+				{% if request.user == guestbook.author %}
+					&nbsp;&nbsp;<a href="{% url 'guestbook:delete' guestbook.id %}"> 삭제</a>
+				{% endif %}
+				</nav>
+			</div>
+			<div class="card-body">
+				<h6 class="card-text" style="font-family: 'Gamja Flower'; padding:1px;">
+				{{ guestbook.content|linebreaks }}
+				</h6>
+			</div>
+			
 			<br>
-			{% endfor %}
-			<br>
-		
+		</div>
+	{% endfor %}
+	<br>	
 	</ul>
+
+<script type="text/javascript" src="js/bootstrap.js"></script>
 </div>
-{% endblock%}
+{% endblock visit %}
+
+</body>

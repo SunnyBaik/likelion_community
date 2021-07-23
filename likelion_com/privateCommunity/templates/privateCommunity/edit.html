@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <h1>edit post</h1>
-
-    <div class = "container">
+<div style="margin-top:10%; margin-bottom:10%">
+    <h1 class="board-title">edit post</h1>
+    <div class = "newandedit">
       <form method="POST" action="{% url 'privateCommunity:edit' post.id%}" enctype="multipart/form-data" >
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
-        <button type="submit">저장</button>
+        <button type="submit" class="btn btn-outline-secondary" style="width:54px; font-size: 14px; display:flex; align-self:flex-end;" >저장</button>
       </form>
     </div>
-    
+  </div>
 {% endblock content %}

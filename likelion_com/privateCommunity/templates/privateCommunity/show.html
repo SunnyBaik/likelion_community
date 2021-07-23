@@ -2,75 +2,82 @@
 
 {% block content %}
 
-    <div>
-      <a href="{% url 'privateCommunity:home' %}">home</a>
-      <p>분류: {{post.category}}</p>
-      <h1>제목: {{ post.title }}</h1>
-      <p> 생성 시간: {{post.created_at}} <br> 조회수: {{post.view_count}} </p>
-      {% if request.user == post.author %}   
-        <a href="{% url 'privateCommunity:edit' id=post.id %}">수정</a>
-        <a onclick = "onClickDeleteButtonDetail({{post.id}})">삭제</a>
-      {% endif %}
-      
-      <p style="width: 70%;">{{ post.content | safe}}</p>
-    </div>
-    <div id="post-emotion-container">
-      {% if user.is_authenticated %}
-      <div class="post-emotion-icon">
-        <a onclick="onClickPostBestButton({{post.id}})" id="post-best-button">
-          <span class='badge'>{{postBestCount}}</span>
-          <img class="post-emotion-icon" src="/static/privateCommunity/img/best.png" />
-        </a>
+    <div style="margin-top: 150px;">
+      <div class="card" style="width:70%;margin-left: auto; margin-right: auto; padding:3%;">
+        <div class="card-body">
+          <h1 style="font-weight: bold;">{{ post.title }}<br></h1>
+          <br>
+          <h6 style="font-size : smaller; font-weight: bold; display:inline;">작성자</h6><h6 style="font-size : smaller; display:inline;"> {{post.author}}</h6><br>
+          <h6 style="font-size : smaller; font-weight: bold; display:inline;">조회수</h6><h6 style="font-size : smaller; display:inline;"> {{post.view_count}}</h6><br>
+          <h6 style="font-size : smaller; font-weight: bold; display:inline;">작성시간</h6><h6 style="font-size : smaller; display:inline;"> {{post.created_at}}</h6><br>
+          <br>
+          <p style="width: 70%;">{{ post.content | safe}}</p>
+          <br>
+          {% if request.user == post.author %}
+          <div style="display:flex; justify-content:flex-end;">
+          <a class="btn btn-outline-secondary" style="width:53px; font-size:smaller;" href="{% url 'privateCommunity:edit' post.id %}" role="button">수정</a>&nbsp
+          <a class="btn btn-outline-secondary" style="width:53px; font-size:smaller;" href="{% url 'privateCommunity:delete' post.id %}" role="button">삭제</a>&nbsp 
+          </div>
+          {% endif %}
+        </div>
       </div>
-      <div class="post-emotion-icon">
-        <a onclick="onClickPostThanksButton({{post.id}})" id="post-thanks-button">
-          <span class='badge'>{{postThanksCount}}</span>   
-          <img class="post-emotion-icon" src="/static/privateCommunity/img/thanks.png" />
-        </a>
-      </div>
-      <div class="post-emotion-icon">
-        <a onclick="onClickPostSurprisingButton({{post.id}})" id="post-surprising-button">
-          <span class='badge'>{{postSurprisingCount}}</span>
-          <img class="post-emotion-icon" src="/static/privateCommunity/img/surprising.png" />
-        </a>
-      </div>
-      <div class="post-emotion-icon">
-        <a onclick="onClickPostFunnyButton({{post.id}})" id="post-funny-button">
-          <span class='badge'>{{postFunnyCount}}</span>
-          <img class="post-emotion-icon" src="/static/privateCommunity/img/funny.png" />
-        </a>
-      </div>
-      {% else %}
-      <div class="emotion-icon">
-        <a onclick="" class="post-best-button">
-          <span class='badge'>{{postBestCount}}</span>
-          <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
-        </a>
-      </div>
-      <div class="emotion-icon">
-        <a onclick="" class="post-thanks-button">
-          <span class='badge'>{{postThanksCount}}</span>
-          <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
-        </a>
-      </div>
-      <div class="emotion-icon">
-        <a onclick="" class="post-surprising-button">
-          <span class='badge'>{{postSurprisingCount}}</span>
-          <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
-        </a>
-      </div>
-      <div class="emotion-icon">
-        <a onclick="" class="post-funny-button">
-          <span class='badge'>{{postFunnyCount}}</span>
-          <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
-        </a>
-      </div>
-      {% endif %}
-    </div>
 
+      <div id="post-emotion-container">
+      {% if user.is_authenticated %}
+        <div class="post-emotion-icon">
+          <a onclick="onClickPostBestButton({{post.id}})" id="post-best-button">
+            <span class='badge'>{{postBestCount}}</span>
+            <img class="post-emotion-icon" src="/static/privateCommunity/img/best.png" />
+          </a>
+        </div>
+        <div class="post-emotion-icon">
+          <a onclick="onClickPostThanksButton({{post.id}})" id="post-thanks-button">
+            <span class='badge'>{{postThanksCount}}</span>   
+            <img class="post-emotion-icon" src="/static/privateCommunity/img/thanks.png" />
+          </a>
+        </div>
+        <div class="post-emotion-icon">
+          <a onclick="onClickPostSurprisingButton({{post.id}})" id="post-surprising-button">
+            <span class='badge'>{{postSurprisingCount}}</span>
+            <img class="post-emotion-icon" src="/static/privateCommunity/img/surprising.png" />
+          </a>
+        </div>
+        <div class="post-emotion-icon">
+          <a onclick="onClickPostFunnyButton({{post.id}})" id="post-funny-button">
+            <span class='badge'>{{postFunnyCount}}</span>
+            <img class="post-emotion-icon" src="/static/privateCommunity/img/funny.png" />
+          </a>
+        </div>
+      {% else %}
+        <div class="emotion-icon">
+          <a onclick="" class="post-best-button">
+            <span class='badge'>{{postBestCount}}</span>
+            <img class="emotion-icon" src="/static/privateCommunity/img/best.png" />
+          </a>
+        </div>
+        <div class="emotion-icon">
+          <a onclick="" class="post-thanks-button">
+            <span class='badge'>{{postThanksCount}}</span>
+            <img class="emotion-icon" src="/static/privateCommunity/img/thanks.png" />
+          </a>
+        </div>
+        <div class="emotion-icon">
+          <a onclick="" class="post-surprising-button">
+            <span class='badge'>{{postSurprisingCount}}</span>
+            <img class="emotion-icon" src="/static/privateCommunity/img/surprising.png" />
+          </a>
+        </div>
+        <div class="emotion-icon">
+          <a onclick="" class="post-funny-button">
+            <span class='badge'>{{postFunnyCount}}</span>
+            <img class="emotion-icon" src="/static/privateCommunity/img/funny.png" />
+          </a>
+        </div>
+      {% endif %}
+    </div>
+      
     <p id="comment-count"><strong>댓글이 {{commentCount}}개 있습니다 </strong><p>
     {% if user.is_authenticated %}
-    
       {% csrf_token %}
       <input id="comment-input" type="text" name="content" />
       <button onclick="onAddComment({{post.id}})">댓글 달기</button>
@@ -300,4 +307,7 @@
         </div>
       {% endfor %}
     </div>
-{% endblock content %}
+  
+  {% endblock content %}
+
+    

@@ -1,24 +1,21 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from guestbook.models import Guestbook
-from accounts.models import Profile
 from django.contrib.auth.models import User
 
 # Create your views here.
+
+def list(request):
+    guestbooklist = Guestbook.objects.all().order_by('-created_at')
+    return render(request, 'guestbook/list.html', {'guestbooklist': guestbooklist})
 
 def write(request):
     guestbook = Guestbook()
     guestbook.content = request.POST['content']
     guestbook = Guestbook.objects.create(content=guestbook.content, author=request.user)
     guestbook.save()
-    return HttpResponseRedirect('list')
+    return redirect('guestbook:list')
 
-def delete(id):
+def delete(request, id):
     guestbook = Guestbook.objects.get(id=id)
-    guestbook.delete() 
-
-    return HttpResponseRedirect('list')
-
-def list(request):
-    guestbooklist = Guestbook.objects.all().order_by('-created_at')
-    return render(request, 'guestbook/list.html', {'guestbooklist': guestbooklist})
+    guestbook.delete() # 선택된 모델 인스턴스를 삭제하는 query 함수입니다.
+    return redirect('guestbook:list')

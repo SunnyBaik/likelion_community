@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div style="margin-top:10%; margin-bottom:10%">
+  <h1 class="board-title">new post</h1>
 
-    <h1>new post</h1>
-
-    <div class = "container">
-      <form method="POST" action="{% url 'privateCommunity:home' %}" enctype="multipart/form-data" >
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+  <div class = "newandedit">
+    <form method="POST" action="{% url 'privateCommunity:home' %}" enctype="multipart/form-data" >
+      {% csrf_token %}
+      {{ form.media }}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-outline-secondary" style="width:54px; font-size: 14px; display:flex; align-self:flex-end;" >저장</button>
+    </form>
+  </div>
+</div>  
 {% endblock content %}

@@ -4,6 +4,9 @@ from django.contrib import auth  # 추가
 from django.shortcuts import redirect  # 추가
 from accounts.models import Profile
 
+def login(request):
+    return render(request, 'registration/login.html')
+
 def signup(request):
     # 추가
     if request.method  == 'POST':
@@ -14,7 +17,8 @@ def signup(request):
                 , email=request.POST['email'], tmi=request.POST['tmi']
                 , github_id=request.POST['github_id'])
             user = User.objects.get(username=request.POST['username'])
-            auth.login(request, user)
+            user.is_active = False
+            user.save()
             return redirect('/community')
 
     return render(request, 'accounts/signup.html')

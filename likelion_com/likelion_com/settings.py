@@ -173,3 +173,5 @@ LOGOUT_REDIRECT_URL = "/community/"
 SITE_ID = 1
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
+
+# ALLOWED_HOSTS = ['likelion-com-dev.elasticbeanstalk.com']

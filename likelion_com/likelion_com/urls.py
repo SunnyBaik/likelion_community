@@ -30,6 +30,7 @@ urlpatterns = [
     path('', privateCommunity.views.home, name='home'),
     path('community/', include('privateCommunity.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/login/', accounts.views.login, name='login'),
     path('accounts/signup/', accounts.views.signup, name='signup'),
     path('accounts/infoupdate/', accounts.views.infoupdate, name='infoupdate'),
     path('guestbook/', include('guestbook.urls')),

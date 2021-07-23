@@ -1,8 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,66 +7,74 @@
 
     {% load sass_tags %}
     <link rel="stylesheet" type="text/css" href="{% sass_src 'accounts/scss/signup.scss' %}" />
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'accounts/scss/signin.scss' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <title>Sign up | Snulion </title>
 </head>
 
-<body>
+<main class="form-signin">
+    <form method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+      <img class="mb-4" src="{% static 'accounts/img/mainlogo3.png' %}" alt="" width="300">
+  
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Id" name="username">
+        <label for="floatingInput">사용자 이름(ID)</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="College" name="college">
+        <label for="floatingInput">재학중인 학교</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Major" name="major">
+        <label for="floatingInput">전공</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="number" class="form-control" id="floatingInput" placeholder="Batch" name="batch">
+        <label for="floatingInput">기수</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="number" class="form-control" id="floatingInput" placeholder="Tel" name="tel">
+        <label for="floatingInput">전화번호</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="email" name="email">
+        <label for="floatingInput">e-mail</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="TMI" name="tmi">
+        <label for="floatingInput">TMI</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="github_id" name="github_id">
+        <label for="floatingInput">github ID</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="3자 이상의 알파벳 대소문자 or 숫자를 입력해주세요" name="password1">
+        <label for="floatingPassword">비밀번호</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="3자 이상의 알파벳 대소문자 or 숫자를 입력해주세요" name="password2">
+        <label for="floatingPassword">비밀번호 확인</label>
+      </div>
+      <br>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" value="회원가입">Sign Up</button>
+    </form>
+  </main>
 
-<h1> Sign Up! </h1>
-<form id="signup-form" method="POST" action="{%url 'signup' %}">
-    {% csrf_token %}
-    사용자 이름:
-    <br>
-    <input name="username" type="text" value="" placeholder="사용자 이름을 입력해주세요">
-    <br>
-    <br>
-    재학중인 학교:
-    <br>
-    <input name="college" type="text" value="">
-    <br>
-    <br>
-    전공:
-    <br>
-    <input name="major" type="text" value="">
-    <br>
-    <br>
-    기수:
-    <br>
-    <input name="batch" type="number" value="">
-    <br>
-    <br>
-    전화번호:
-    <br>
-    <input name="tel" type="number" value="">
-    <br>
-    <br>
-    이메일:
-    <br>
-    <input name="email" type="text" value="">
-    <br>
-    <br>
-    TMI:
-    <br>
-    <input name="tmi" type="text" value="">
-    <br>
-    <br>
-    github 아이디:
-    <br>
-    <input name="github_id" type="text" value="">
-    <br>
-    <br>
-    비밀번호:
-    <br>
-    <input name="password1" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 or 숫자를 입력해주세요">
-    <br>
-    <br>
-    비밀번호 확인:
-    <br>
-    <input name="password2" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 or 숫자를 입력해주세요">
-    <br>
-    <br>
-    <input type="submit" value="Sign Up!">
-</form>
+
+
+<body>
 
 <div id="signup-error-modal">
     <div class="modal-header">
@@ -77,12 +82,10 @@
         <button class="close-button">x</button>
     </div>
     <div class="modal-content">
-        비밀번호와 비밀번호 확인이 다르네요! 확인해주세용
+        비밀번호를 확인해주세요!
     </div>
 </div>
 
 <script type="module" src="{% static 'accounts/js/signup.js' %}"></script>
 
 </body>
-
-</html>
