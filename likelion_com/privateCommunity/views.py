@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from .forms import PostForm, PostForm2, PostForm_qna
 from django.http import HttpResponseRedirect
 
-# Create your views here.
+# Create your views here.   
 
 def home(request):
     if request.method == 'POST':
