@@ -234,7 +234,7 @@ class CommentView:
         return JsonResponse({
             'commentId': comment.id,
             'author': comment.author.username,
-            'created_at': comment.created_at.strftime("%Y년 %m월 %d일 %-H:%M".encode('unicode-escape').decode()).encode().decode('unicode-escape'),
+            'created_at': comment.created_at,
             'commentCount': comment_count,
             'emotionCount': comment.commentemotion_set.count()
         })
@@ -480,7 +480,7 @@ class ReCommentView:
         return JsonResponse({
             'recommentId': recomment.id,
             'author': recomment.author.username,
-            'created_at': recomment.created_at.strftime("%Y년 %m월 %d일 %-H:%M".encode('unicode-escape').decode()).encode().decode('unicode-escape'),
+            'created_at': recomment.created_at,
             'commentCount': comment_count
         })
         

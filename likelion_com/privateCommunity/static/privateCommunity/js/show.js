@@ -285,7 +285,7 @@ const getReCommentElement = (content, postId, commentId, recommentId, author, cr
 
     let deleteDiv = document.createElement('div');
     let deleteButton = document.createElement('a');
-    deleteButton.setAttribute('onclick', `onReClickCommentDelete(${postId},${commentId},${recommentId})`);
+    deleteButton.setAttribute('onclick', `onClickReCommentDelete(${postId},${commentId},${recommentId})`);
     deleteButton.innerHTML = "&nbsp;&nbsp;삭제";
     deleteDiv.appendChild(deleteButton);
     newReCommentElement.appendChild(deleteDiv);
