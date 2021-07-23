@@ -31,7 +31,7 @@ def home(request):
         if request.user.is_anonymous:
             return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info, 'popular':popular})
         else:
-            return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info, 'popular':popular, 'notis': request.user.notification_set.all()})
+            return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info, 'popular':popular, 'notis': request.user.notification_set.all().order_by('-created_at')[:10]})
 
 def noticecreate(request):
     if request.method == 'POST':
