@@ -17,8 +17,7 @@ def home(request):
         category = request.POST['category']
         content = request.POST['content']
         post = Post.objects.create(title=title, category=category, content=content, author=request.user, view_count = 0)
-        comments = post.comment_set.order_by('created_at')
-        emotions = post.emotion_set
+        
         return redirect('privateCommunity:show', id= post.id)
     else:
         notice = Post.objects.filter(category='공지게시판').order_by('-created_at')[0:5]
@@ -28,7 +27,7 @@ def home(request):
         free = Post.objects.filter(category='자유게시판').order_by('-created_at')[0:5] 
         info = Post.objects.filter(category='정보게시판').order_by('-created_at')[0:5]
         popular = Post.objects.order_by('-view_count')[0:5]
-        posts = Post.objects.all()
+        
         if request.user.is_anonymous:
             return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info, 'popular':popular})
         else:
