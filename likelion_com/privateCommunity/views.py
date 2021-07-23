@@ -145,8 +145,6 @@ def new_qna(request):
 
 def show(request, id):
     post = Post.objects.get(id=id)
-    post.view_count += 1
-    post.save()
     qna_type = Post.objects.get(id=id)
     post.view_count +=1
     post.save()

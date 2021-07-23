@@ -93,15 +93,22 @@
                         {%endif%}
                     </div>
 
-                    <div class="dropdown mt-3">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                            Dropdown button
+                    <div class="noti-container-parent">
+                        <button style="margin-top: 10px;" type="button" class="btn btn-warning">
+                            <img class="noti-icon" src="/static/privateCommunity/img/notification.png" />
+                            알림
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <div class="noti-container-child">
+                            {% for noti in notis %}
+                            <div class="noti-item" onclick="location.href='/community/posts/{{noti.post_id}}/';">
+                            {% if noti.type == "comment" %}
+                                {{noti.trigger_user}} 님이 회원님의 게시글에 댓글을 남겼습니다.
+                            {% else%}
+                                {{noti.trigger_user}} 님이 회원님의 댓글에 답글을 남겼습니다.
+                            {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
