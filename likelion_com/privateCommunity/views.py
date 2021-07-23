@@ -27,8 +27,9 @@ def home(request):
         apply = Post.objects.filter(category='모집게시판').order_by('-created_at')[0:5]
         free = Post.objects.filter(category='자유게시판').order_by('-created_at')[0:5] 
         info = Post.objects.filter(category='정보게시판').order_by('-created_at')[0:5]
+        popular = Post.objects.order_by('-view_count')[0:5]
 
-        return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info})
+        return render(request, 'privateCommunity/home.html', {'notice':notice, 'announce':announce, 'qna':qna, 'apply':apply, 'free':free, 'info':info, 'popular':popular})
 
 def noticecreate(request):
     if request.method == 'POST':
@@ -142,6 +143,8 @@ def new_qna(request):
 
 def show(request, id):
     post = Post.objects.get(id=id)
+    post.view_count += 1
+    post.save()
     qna_type = Post.objects.get(id=id)
     post.view_count +=1
     post.save()
