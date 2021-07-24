@@ -260,7 +260,13 @@ def board_NoticeList(request):
 
     context = {'board_notice': page_obj}
     return render(request, 'privateCommunity/board_notice.html', context)
- 
+
+def board_Search(request):
+    search_key = request.POST['search']
+    if search_key:
+        search_list = Post.objects.all().filter(title__icontains=search_key)
+        return render(request, 'privateCommunity/board_search.html', {'search_list': search_list})
+    return redirect('privateCommunity:home')
 
 class board_AnnounceList(ListView):
     model = Post

@@ -93,6 +93,15 @@
                         {%endif%}
                     </div>
 
+                    <form class="row" method="post" action="{% url 'privateCommunity:board_search' %}">
+                        {% csrf_token %}
+                        <div class="form-floating col-8 ms-2 mt-2">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="search" name="search">
+                            <label for="floatingInput">Search</label>
+                        </div>
+                        <button class="col-2 mt-2 btn btn-sm btn-outline-primary" type="submit" value="search">검색</button>
+                    </form>
+
                     <div class="noti-container-parent">
                         <button style="margin-top: 10px;" type="button" class="btn btn-warning">
                             <img class="noti-icon" src="/static/privateCommunity/img/notification.png" />
