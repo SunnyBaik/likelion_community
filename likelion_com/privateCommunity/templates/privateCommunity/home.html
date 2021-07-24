@@ -3,17 +3,24 @@
 {% block content %}
 
   <main class="container">
-  <div style="margin-top: 120px;">
-      <a class="mouse-scroll" style="position:relative;" href="#wow"> 
-                            <span class="mouse">
-                                <span class="mouse-movement"></span>
-                            </span>
-                            <span class="mouse-message fadeIn">Explore</span> 
-                        </a>
-    <img class="home_lion" width=100% src="{% static 'privateCommunity/img/home_lion.jpg' %}">
-    <div class="col-md-6 px-0" style="position:relative;">
-      <h1 class="display-4 fst-italic">Welcome to SNU Like Lion Community</h1>
-      <p class="lead my-3" id="wow">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+  <div class="home-lion">
+    {% comment %} <div>
+      <img width=100% src="{% static 'privateCommunity/img/home_lion.jpg' %}" />
+    </div> {% endcomment %}
+  
+    <div class="home-text">
+      <h1 class="text-light text-end display-4 fst-italic">Welcome to <br>SNU Like Lion <br>Community</h1>
+      <p class="text-light text-end lead my-3">The best of all lions.</p>
+    </div>
+    <a class="mouse-scroll" href="#wow"> 
+      <span class="mouse">
+        <span class="mouse-movement"></span>
+      </span>
+      <span class="mouse-message fadeIn">Explore</span> 
+    </a>
+    <div style="height:145px;">
+    </div>
+    <div id="wow">
     </div>
 
   </div>

@@ -1,13 +1,13 @@
 .mouse-scroll {
     position: absolute;
-    left:48%;
+    left:80%;
     display: inline-block;
     line-height: 18px;
     font-size: 13px;
     font-weight: normal;
     color: #96a2ad;
     letter-spacing: 2px;
-    bottom:5%;
+    bottom:15%;
     text-decoration: none;
     overflow: hidden;
 }

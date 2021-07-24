@@ -126,4 +126,15 @@ a {
   transition: top 0.5s, opacity 0.5s;
   z-index: 1; }
 
+.home-lion {
+  margin-top: 50px;
+  background-image: url("/static/privateCommunity/img/home_lion.jpg");
+  height: 600px;
+  background-size: cover; }
+
+.home-text {
+  color: white;
+  padding-top: 100px;
+  margin-right: 50px; }
+
 /*# sourceMappingURL=base.css.map */
