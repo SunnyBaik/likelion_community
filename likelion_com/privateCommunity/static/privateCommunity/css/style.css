@@ -82,6 +82,7 @@
     border:top;
     font-family: 'Noto Sans KR', sans-serif;
     text-decoration-line: none;
+    color:#1a2d74;
 }
 
 .reply {
@@ -106,4 +107,14 @@
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 10px;
     color:grey;
+}
+
+.poppostcontent {
+    display:flex;
+    border:top;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-decoration-line: none;
+    color:#1d1d1d;
+    padding: 1%;
+    
 }
