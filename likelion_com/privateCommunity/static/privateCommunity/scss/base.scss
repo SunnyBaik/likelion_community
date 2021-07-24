@@ -61,23 +61,22 @@ $offcanvas-horizontal-width: 100px;
 	position:relative;
 	height: 40px;
 	width: 40px;
-	padding-top:20px;
     display:inline-block;
 }
 
 .badge{
     position: absolute;
-    right:-5px;
-    top:40px;
+    right:-7px;
+    top:3px;
     background: orange;
+	display:flex;
     text-align: center;
 	vertical-align: middle;
     border-radius: 15px 15px 15px 15px;
     color:white;
-	height: 15px;
-	width: 18px;
-    padding-top:3px;
-    font-size:10px;
+	height: 20px;
+	width: 19px;
+    font-size:8px;
 }
 
 .comment-box{
@@ -99,7 +98,7 @@ $offcanvas-horizontal-width: 100px;
 }
 
 .like-box-child {
-	border: 1px solid pink;
+	border: none;
 	width: 150px;
 	height: 30px;
 	position: absolute;
@@ -115,7 +114,7 @@ $offcanvas-horizontal-width: 100px;
 }
 
 .like-box-parent:hover > .like-box-child {
-	top: -40px;
+	top: -30px;
 	opacity: 1;
 	transition: top 1s, opacity 1s;
 	z-index: 1;

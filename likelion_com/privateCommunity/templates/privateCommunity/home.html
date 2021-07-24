@@ -2,9 +2,11 @@
 {% load static %}
 {% block content %}
 
-  <main class="container">
-  <div style="margin-top: 120px;">
-      <a class="mouse-scroll" style="position:relative;" href="#wow"> 
+
+
+<main class="container">
+  <div class="main-lion" style="margin-top: 120px;">
+      <a class="mouse-scroll" href="#wow"> 
                             <span class="mouse">
                                 <span class="mouse-movement"></span>
                             </span>
@@ -12,15 +14,13 @@
                         </a>
     <img class="home_lion" width=100% src="{% static 'privateCommunity/img/home_lion.jpg' %}">
     <div class="col-md-6 px-0" style="position:relative;">
-      <h1 class="display-4 fst-italic">Welcome to SNU Like Lion Community</h1>
+      <h1 class="display-4 fst-italic" style="color:grey">Welcome to SNU Like Lion Community</h1>
       <p class="lead my-3" id="wow">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
     </div>
 
-  </div>
-
   <div class="row g-5">
-    <div class="col-md-8">
-      <span class="row p-3">
+    <div class="col-md-8" style="width:65%;">
+      <span class="row p-3" style="height: 15rem;">
         <div class="card" style="width: 21rem;">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
             &nbsp; 공지게시판
@@ -33,7 +33,7 @@
           {% endfor %}
         </div>
         
-        <div class="card" style="width: 21rem; margin-left:4.5%">
+        <div class="card" style="width: 21rem; margin-left:3%">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
             &nbsp; 공고게시판
           </div>
@@ -61,7 +61,7 @@
           {% endfor %}
         </div>
         
-        <div class="card" style="width: 21rem; margin-left:4.5%">
+        <div class="card" style="width: 21rem; margin-left:3%">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px; ">
             &nbsp; 모집게시판
           </div>
@@ -89,7 +89,7 @@
           {% endfor %}
         </div>
         
-        <div class="card" style="width: 21rem;margin-left:4.5%">
+        <div class="card" style="width: 21rem;margin-left:3%">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
             &nbsp; 정보게시판
           </div>
