@@ -10,6 +10,7 @@ urlpatterns = [
     path('freecreate/', views.freecreate, name='freecreate'),
     path('infocreate/', views.infocreate, name='infocreate'),
     path('qnacreate/', views.qnacreate, name='qnacreate'),
+    path('search/', views.board_Search, name='board_search'),
     path('notice/', views.board_NoticeList, name='board_notice'),
     path('announce/', views.board_AnnounceList.as_view(), name='board_announce'),
     path('qna/', views.board_QnaList.as_view(), name='board_qna'),

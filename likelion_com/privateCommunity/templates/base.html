@@ -78,16 +78,14 @@
                         {% endif %}
                     </div>
 
-                    <div class="dropdown mt-3">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
+                    <form class="row" method="post" action="{% url 'privateCommunity:board_search' %}">
+                        {% csrf_token %}
+                        <div class="form-floating col-8 ms-2 mt-2">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="search" name="search">
+                            <label for="floatingInput">Search</label>
+                        </div>
+                        <button class="col-2 mt-2 btn btn-sm btn-outline-primary" type="submit" value="search">검색</button>
+                    </form>
                 </div>
             </div>
 
@@ -107,12 +105,12 @@
             </ul>
 
             <div class="col-md-2 text-end">
-                {% if user.is_authenticated %} 
-                    멋쟁이 사자, {{ user.get_username }}님
-                {% else %} 
-                    <button type="button" onclick="location.href='{% url 'login' %}'" class="btn btn-outline-primary me-2">Login</button>
-                    <button type="button" onclick="location.href='{% url 'signup' %}'" class="btn btn-primary">Sign-up</button> 
-                {% endif %} 
+                    {% if user.is_authenticated %} 
+                        멋쟁이 사자, {{ user.get_username }}님
+                    {% else %} 
+                        <button type="button" onclick="location.href='{% url 'login' %}'" class="btn btn-outline-primary me-2">Login</button>
+                        <button type="button" onclick="location.href='{% url 'signup' %}'" class="btn btn-primary">Sign-up</button> 
+                    {% endif %} 
             </div>
 
             </header>
@@ -141,6 +139,9 @@
 
         {% block visit %}
         {% endblock visit %}
+
+        {% block search %}
+        {% endblock search %}
 
     </main>
         
