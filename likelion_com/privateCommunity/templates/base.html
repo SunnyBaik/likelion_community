@@ -95,7 +95,7 @@
 
                     <form class="row" method="post" action="{% url 'privateCommunity:board_search' %}">
                         {% csrf_token %}
-                        <div class="form-floating col-8 ms-2 mt-2">
+                        <div class="form-floating col-8 mt-2">
                             <input type="text" class="form-control" id="floatingInput" placeholder="search" name="search">
                             <label for="floatingInput">Search</label>
                         </div>
