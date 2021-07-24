@@ -126,9 +126,9 @@ a {
   z-index: 1; }
 
 .home-lion {
-  margin-top: 50px;
+  margin-top: 20px;
   background-image: url("/static/privateCommunity/img/home_lion.jpg");
-  height: 600px;
+  height: 630px;
   background-size: cover; }
 
 .home-text {

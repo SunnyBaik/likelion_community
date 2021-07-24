@@ -1,10 +1,6 @@
 .mouse-scroll {
     position: absolute;
-<<<<<<< HEAD
     left:80%;
-=======
-    left:85%;
->>>>>>> origin/minji2
     display: inline-block;
     line-height: 18px;
     font-size: 13px;
