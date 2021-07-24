@@ -118,3 +118,16 @@
     padding: 1%;
     
 }
+
+.titlestyle {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 50px;
+    color:#2c2c2c;
+}
+
+.contentstyle{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    color:#2c2c2c;
+}
+

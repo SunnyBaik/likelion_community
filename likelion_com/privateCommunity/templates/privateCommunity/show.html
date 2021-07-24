@@ -5,18 +5,18 @@
     <div style="margin-top: 150px;">
       <div class="card" style="width:70%;margin-left: auto; margin-right: auto; padding:3%;">
         <div class="card-body">
-          <h1 style="font-weight: bold;">{{ post.title }}<br></h1>
+          <h1 class="titlestyle" style="font-weight: bold;">{{ post.title }}<br></h1>
           <br>
-          <h6 style="font-size : smaller; font-weight: bold; display:inline;">작성자</h6><h6 style="font-size : smaller; display:inline;"> {{post.author}}</h6><br>
-          <h6 style="font-size : smaller; font-weight: bold; display:inline;">조회수</h6><h6 style="font-size : smaller; display:inline;"> {{post.view_count}}</h6><br>
-          <h6 style="font-size : smaller; font-weight: bold; display:inline;">작성시간</h6><h6 style="font-size : smaller; display:inline;"> {{post.created_at}}</h6><br>
+          <h6 style="font-family: 'Noto Sans KR', sans-serif;font-size : smaller; font-weight: bold; display:inline;">작성자&nbsp;&nbsp;</h6><h6 style="font-size : smaller; display:inline;"> {{post.author}}</h6><br>
+          <h6 style="font-family: 'Noto Sans KR', sans-serif;font-size : smaller; font-weight: bold; display:inline;">조회수&nbsp;&nbsp;</h6><h6 style="font-size : smaller; display:inline;"> {{post.view_count}}</h6><br>
+          <h6 style="font-family: 'Noto Sans KR', sans-serif;font-size : smaller; font-weight: bold; display:inline;">작성시간&nbsp;&nbsp;</h6><h6 style="font-size : smaller; display:inline;"> {{post.created_at}}</h6><br>
           <br>
           <p style="width: 70%;">{{ post.content | safe}}</p>
           <br>
           {% if request.user == post.author %}
           <div style="display:flex; justify-content:flex-end;">
-          <a class="btn btn-outline-secondary" style="width:53px; font-size:smaller;" href="{% url 'privateCommunity:edit' post.id %}" role="button">수정</a>&nbsp
-          <a class="btn btn-outline-secondary" style="width:53px; font-size:smaller;" href="{% url 'privateCommunity:delete' post.id %}" role="button">삭제</a>&nbsp 
+          <a class="btn btn-outline-secondary" style="font-family: 'Noto Sans KR', sans-serif;width:53px; font-size:smaller;" href="{% url 'privateCommunity:edit' post.id %}" role="button">수정</a>&nbsp
+          <a class="btn btn-outline-secondary" style="font-family: 'Noto Sans KR', sans-serif;width:53px; font-size:smaller;" href="{% url 'privateCommunity:delete' post.id %}" role="button">삭제</a>&nbsp 
           </div>
           {% endif %}
         </div>

@@ -29,6 +29,12 @@ a {
     color: black;
     text-decoration: none; } }
 
+body, html {
+  cursor: url(cursor.cur), url(cursor.cur), auto; }
+
+a {
+  cursor: url(cursor.cur), url(cursor.cur), auto; }
+
 .none {
   display: none; }
 
@@ -119,5 +125,8 @@ a {
   opacity: 1;
   transition: top 0.5s, opacity 0.5s;
   z-index: 1; }
+
+.logdesign {
+  font-family: 'Do Hyeon', sans-serif; }
 
 /*# sourceMappingURL=base.css.map */

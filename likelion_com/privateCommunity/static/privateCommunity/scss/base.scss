@@ -39,6 +39,7 @@ $offcanvas-horizontal-width: 100px;
 
 
 
+
 .none {
 	display: none;
 }
@@ -150,4 +151,8 @@ $offcanvas-horizontal-width: 100px;
 	opacity: 1;
 	transition: top 0.5s, opacity 0.5s;
 	z-index: 1;
+}
+
+.logdesign {
+	font-family: 'Do Hyeon', sans-serif;
 }

@@ -69,23 +69,24 @@
                 <img class="barlion" width="45px" style="padding:5%;" src="{% static 'privateCommunity/img/barlion.jpg' %}">
             </a>
 
-            <div style="width: 300px;" class="offcanvas offcanvas-start" offcanvas-horizontal-width="20px" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
+            <div style="width: 240px;" class="offcanvas offcanvas-start" offcanvas-horizontal-width="20px" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header logdesign">
                     {% if user.is_authenticated %} 
-                            <button type="button" onclick="location.href='{% url 'logout' %}'" class="btn btn-outline-primary ms-2">Logout</button>
-                            <button type="button" onclick="location.href='{% url 'infoupdate' %}'" class="btn btn-primary">myinfo</button> 
+                            <button type="button" onclick="location.href='{% url 'logout' %}'" class="btn btn-outline-primary ms-2 logdesign">Logout</button>
+                            <button type="button" onclick="location.href='{% url 'infoupdate' %}'" class="btn btn-primary logdesign">myinfo</button> 
                     {% else %}
                         <span>
-                            <button type="button" onclick="location.href='{% url 'login' %}'" class="btn btn-outline-primary me-2">Login</button>
-                            <button type="button" onclick="location.href='{% url 'signup' %}'" class="btn btn-primary">Sign-up</button> 
+                            <button type="button" onclick="location.href='{% url 'login' %}'" class="btn btn-outline-primary me-2 logdesign">Login</button>
+                            <button type="button" onclick="location.href='{% url 'signup' %}'" class="btn btn-primary logdesign">Sign-up</button> 
                         </span>
                     {% endif %}
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body">
-                    <div>
+                <div class="offcanvas-body homeposttitle">
+                    <div >
                         {% if user.is_authenticated %} 
-                            <div style="padding: 0 10px; margin-bottom: 5px; border-right: 1px solid white;">{{ user.get_username }}님은 멋쟁이 사자!!!</div>
+                            <div style="padding: 0 10px; margin-bottom: 5px; border-right: 1px solid white;">(｡•̀ᴗ-)✧<br>
+                            <span style="font-size:25px">{{ user.get_username }}</span>님은 멋쟁이 사자!&nbsp;</div>
                             <div style="padding: 0 10px; margin-bottom: 5px; border-right: 1px solid white;">학교: {{ user.profile.college }}</div>
                             <div style="padding: 0 10px; margin-bottom: 5px; border-right: 1px solid white">전공: {{ user.profile.major }}</div>
                         
@@ -93,16 +94,7 @@
                         {%endif%}
                     </div>
 
-                    <div class="dropdown mt-3">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
+        
                 </div>
             </div>
 
@@ -110,7 +102,7 @@
                 <img class="mainlogo" width="230px" style="margin-left:8%;" src="{% static 'privateCommunity/img/bluelogo 1.jpg' %}">
             </a>
             
-            <ul class="d-flex flex-nowrap nav col-13 ms-5 col-md-auto mb-2 justify-content-center mb-md-0">
+            <ul class="d-flex flex-nowrap nav col-13 ms-5 col-md-auto mb-2 justify-content-center mb-md-0 poppostcontent">
                 <li><a href="{% url 'privateCommunity:board_notice' %}" class="nav-link px-2 link-dark">공지게시판</a></li>
                 <li><a href="{% url 'privateCommunity:board_announce' %}" class="nav-link px-2 link-dark">공고게시판</a></li>
                 <li><a href="{% url 'privateCommunity:board_qna' %}" class="nav-link px-2 link-dark">질의응답게시판</a></li>
@@ -120,12 +112,14 @@
                 <li><a href="{% url 'guestbook:list' %}" class="nav-link px-2 link-dark">방명록</a></li>
             </ul>
 
-            <div class="col-md-2 text-end">
+            <div class="col-md-2 text-end" style="font-size:18px; font-family: 'Do Hyeon', sans-serif;">
                 {% if user.is_authenticated %} 
                     멋쟁이 사자, {{ user.get_username }}님
                 {% else %} 
+                    <span class="logdesign" style="margin-right:20%">
                     <button type="button" onclick="location.href='{% url 'login' %}'" class="btn btn-outline-primary me-2">Login</button>
                     <button type="button" onclick="location.href='{% url 'signup' %}'" class="btn btn-primary">Sign-up</button> 
+                    </span>
                 {% endif %} 
             </div>
 
@@ -161,7 +155,7 @@
     <footer>
         <div class="copyright-container">
             <img class="logo" src="{% static 'privateCommunity/img/likelion_white_logo.png' %}">
-            <span id="copyright-text" class="copyright">SNU LIKELION © 2021</span>
+            <span id="copyright-text" style="font-family: 'Noto Sans KR', sans-serif; color:white;" class="copyright">SNU LIKELION © 2021</span>
         </div>
     </footer>
     
