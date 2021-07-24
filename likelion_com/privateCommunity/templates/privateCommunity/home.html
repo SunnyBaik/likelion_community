@@ -20,8 +20,8 @@
 
   <div class="row g-5">
     <div class="col-md-8" style="width:65%;">
-      <span class="row p-3" style="height: 15rem;">
-        <div class="card" style="width: 21rem; padding:1%">
+      <span class="d-flex justify-content-start row p-3" style="height: 15rem;">
+        <div class="card col-6" style="width: 21rem; padding:1%">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
             &nbsp; 공지게시판
           </div>
@@ -33,7 +33,7 @@
           {% endfor %}
         </div>
         
-        <div class="card" style="padding:1%; width: 21rem; margin-left:3%">
+        <div class="card col-6" style="padding:1%; width: 21rem; margin-left:10%">
           <div class="card-header" style="padding:1%; font-family: 'Do Hyeon', sans-serif; font-size:20px;">
             &nbsp; 공고게시판
           </div>
@@ -47,7 +47,7 @@
         </div>
       </span>
 
-      <div class="row p-3">
+      <div class="d-flex justify-content-start row p-3">
         <div class="card" style="width: 21rem;padding:1%; ">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
             &nbsp; 질의응답게시판
@@ -61,7 +61,7 @@
           {% endfor %}
         </div>
         
-        <div class="card" style="padding:1%; width: 21rem; margin-left:3%">
+        <div class="card" style="padding:1%; width: 21rem; margin-left:10%">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px; ">
             &nbsp; 모집게시판
           </div>
@@ -75,7 +75,7 @@
         </div>
       </div>
 
-      <div class="row p-3">
+      <div class="d-flex justify-content-start row p-3">
         <div class="card" style="padding:1%; width: 21rem; ">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
             &nbsp; 자유게시판
@@ -89,7 +89,7 @@
           {% endfor %}
         </div>
         
-        <div class="card" style="padding:1%; width: 21rem;margin-left:3%">
+        <div class="card" style="padding:1%; width: 21rem;margin-left:10%">
           <div class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">
             &nbsp; 정보게시판
           </div>
@@ -113,7 +113,7 @@
     <div class="col-md-4" style="padding:5px">
       <div class="position-sticky" style="top: 6rem; ">
         <div class="p-4">
-          <div class="card border-warning mb-3"  style="padding:1%; width: 27rem; padding:2%">
+          <div class="card border-warning mb-3"  style="padding:1%; padding:2%">
             <h4 class="card-header" style="font-family: 'Do Hyeon', sans-serif; font-size:25px;">실시간 인기글 TOP 5</h4>
             {% for post in popular %}
               <a class="d-flex border-top poppostcontent" href="/community/posts/{{ post.id }}/">
