@@ -14,23 +14,41 @@ const getCommentElement = (content, postId, commentId, author, created_at ,emoti
 	
     let newCommentDiv = document.createElement('div');
     newCommentDiv.setAttribute('id',`${commentId}-comment`);
-    newCommentDiv.setAttribute('class', 'comment-box');
-    let newCommentElement = document.createElement('div');
-    let newCommentContent = document.createElement('p');
-    newCommentContent.innerHTML = `${author}: ${content} &nbsp; &nbsp;${created_at} &nbsp;`;
-    newCommentElement.appendChild(newCommentContent);
-    newCommentDiv.appendChild(newCommentElement);
+    newCommentDiv.setAttribute('style', "display:flex; align-items:center; height:33px; margin-top:10px;");
 
+    let contentdiv = document.createElement('div');
+    let commentNav = document.createElement('nav');
+    commentNav.setAttribute('class', 'comment-box');
+    commentNav.innerHTML = `${author}: ${content} &nbsp; &nbsp;`;
+    createdAtNav = document.createElement('nav');
+    createdAtNav.setAttribute('class', 'smallbox');
+    createdAtNav.innerHTML = `${created_at} &nbsp;`
+    contentdiv.appendChild(commentNav);
+    contentdiv.appendChild(createdAtNav);
+    newCommentDiv.appendChild(contentdiv);
+
+    let deleteDiv = document.createElement('div');
+    deleteDiv.innerHTML = "&nbsp;"
+    let deleteButton = document.createElement('a');
+    deleteButton.setAttribute('class', 'like-box-parent btn btn-light');
+    deleteButton.setAttribute('style', "background: white; width:51px; font-size:11px;");
+    deleteButton.setAttribute('onclick', `onClickCommentDelete(${postId},${commentId})`);
+    deleteButton.innerHTML = "삭제";
+    deleteDiv.appendChild(deleteButton);
+    newCommentDiv.appendChild(deleteDiv);
 
     let replyButton = document.createElement('button');
     replyButton.setAttribute('onclick', `makeRecommentBox(${postId},${commentId})`);
-    replyButton.setAttribute('class', `make-recomment-button`);
-    replyButton.innerHTML = "답글 달기";
+    replyButton.setAttribute('class', `make-recomment-button btn btn-outline-info`);
+    replyButton.setAttribute('style', "background: white; width:50px; font-size:11px;");
+    replyButton.innerHTML = "답글";
     newCommentDiv.appendChild(replyButton);
 
     let likeboxParent = document.createElement('button');
     likeboxParent.innerHTML = '좋아요';
-    likeboxParent.setAttribute('class', 'like-box-parent');
+    likeboxParent.setAttribute('class', 'like-box-parent btn btn-outline-info');
+    likeboxParent.setAttribute('style', "background: white; width:59px; font-size:11px;");
+
 
     let likeboxChild = document.createElement('div');
     likeboxChild.setAttribute('class', 'like-box-child');
@@ -130,13 +148,6 @@ const getCommentElement = (content, postId, commentId, author, created_at ,emoti
     commentEmotionCount.innerHTML = `${emotionCount}`;
     newCommentDiv.appendChild(commentEmotionCount);
 
-
-    let deleteDiv = document.createElement('div');
-    let deleteButton = document.createElement('a');
-    deleteButton.setAttribute('onclick', `onClickCommentDelete(${postId},${commentId})`);
-    deleteButton.innerHTML = "&nbsp;&nbsp;삭제";
-    deleteDiv.appendChild(deleteButton);
-    newCommentDiv.appendChild(deleteDiv);
     
     return newCommentDiv; 
 }
@@ -173,15 +184,31 @@ const getReCommentElement = (content, postId, commentId, recommentId, author, cr
     let newReCommentElement = document.createElement('div');
     newReCommentElement.setAttribute('id',`${recommentId}-recomment`);
     newReCommentElement.setAttribute('class', 'recomment-box');
+    newReCommentElement.setAttribute('style', "display:flex; align-items:center; height:33px; margin-top:10px;");
 
-    let recommentContentHolder = document.createElement('div');
-    let recommentContent = document.createElement('p');
-    recommentContent.innerHTML = `&nbsp; &nbsp;&nbsp; &nbsp; ㄴ> ${author}: ${content} &nbsp; &nbsp;${created_at} &nbsp;`;
-    recommentContentHolder.appendChild(recommentContent);
-    newReCommentElement.appendChild(recommentContentHolder);
+    let contentdiv = document.createElement('div');
+    let commentNav = document.createElement('nav');
+    commentNav.setAttribute('class', 'comment-box');
+    commentNav.innerHTML = `&nbsp; &nbsp;&nbsp; &nbsp; ↪ ${author}: ${content} &nbsp; &nbsp;`;
+    createdAtNav = document.createElement('nav');
+    createdAtNav.setAttribute('class', 'smallbox');
+    createdAtNav.innerHTML = `${created_at} &nbsp;`;
+    contentdiv.appendChild(commentNav);
+    contentdiv.appendChild(createdAtNav);
+    newReCommentElement.appendChild(contentdiv);
+
+
+    let deleteDiv = document.createElement('div');
+    let deleteButton = document.createElement('a');
+    deleteButton.setAttribute('onclick', `onClickReCommentDelete(${postId},${commentId},${recommentId})`);
+    deleteButton.setAttribute('style', "background: white; width:51px; font-size:11px;");
+    deleteButton.innerHTML = "삭제&nbsp;";
+    deleteDiv.appendChild(deleteButton);
+    newReCommentElement.appendChild(deleteDiv);
 
     let likeboxParent = document.createElement('button');
-    likeboxParent.setAttribute('class', 'like-box-parent');
+    likeboxParent.setAttribute('class', 'like-box-parent btn btn-outline-info');
+    likeboxParent.setAttribute('style', "background: white; width:59px; font-size:11px;");
     likeboxParent.innerHTML = "좋아요";
     
     let likeboxChild = document.createElement('div');
@@ -282,13 +309,6 @@ const getReCommentElement = (content, postId, commentId, recommentId, author, cr
     recommentEmotionCount.innerHTML = `${emotionCount}`;
     newReCommentElement.appendChild(recommentEmotionCount);
 
-
-    let deleteDiv = document.createElement('div');
-    let deleteButton = document.createElement('a');
-    deleteButton.setAttribute('onclick', `onClickReCommentDelete(${postId},${commentId},${recommentId})`);
-    deleteButton.innerHTML = "&nbsp;&nbsp;삭제";
-    deleteDiv.appendChild(deleteButton);
-    newReCommentElement.appendChild(deleteDiv);
 
     
     return newReCommentElement; 
@@ -527,7 +547,8 @@ const makeRecommentBox = (postId, commentId) => {
 
     let submit_button = document.createElement('button');
     submit_button.setAttribute('onclick', `onAddReComment(${postId}, ${commentId})`);
-    submit_button.innerHTML = '답글 달기';
+    submit_button.setAttribute('class', `btn btn-outline-info reply`);
+    submit_button.innerHTML = '답글';
   
 
     recomment_list.appendChild(csrf);
